@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity">
+
+    <FrameLayout
+        android:id="@+id/frgScene"
+        android:layout_width="@dimen/one_third_width"
+        android:layout_height="@dimen/one_third_height"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.588"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <fragment
+        android:id="@+id/frgActionControls"
+        android:name="projects.chrisfrancis.raindelaygames.ControlFragments.ActionControlsFragment"
+        android:layout_width="@dimen/one_third_action_controls"
+        android:layout_height="@dimen/one_third_action_controls"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <fragment
+        android:id="@+id/frgDirectionControls"
+        android:name="projects.chrisfrancis.raindelaygames.ControlFragments.DirectionControlsFragment"
+        android:layout_width="@dimen/one_third_direction_controls"
+        android:layout_height="@dimen/one_third_direction_controls"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frgHUD"
+        android:layout_width="@dimen/one_third_width"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/frgScene"
+        app:layout_constraintStart_toStartOf="@+id/frgScene" />
+</android.support.constraint.ConstraintLayout>

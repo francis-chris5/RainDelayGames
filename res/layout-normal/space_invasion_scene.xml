@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cloScene"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgScene"
+            android:layout_width="@dimen/one_third_width"
+            android:layout_height="@dimen/one_third_height"
+            android:scaleType="fitXY"
+            android:src="@drawable/spaceinvasionbackground" />
+
+        <ImageView
+            android:id="@+id/imgAlien"
+            android:layout_width="@dimen/one_third_space_invasion_alien_width"
+            android:layout_height="@dimen/one_third_space_invasion_alien_height"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/alien"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgTruck"
+            android:layout_width="@dimen/one_third_space_invasion_truck_width"
+            android:layout_height="@dimen/one_third_space_invasion_truck_height"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/truck"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgMissile"
+            android:layout_width="@dimen/one_third_space_invasion_missle_width"
+            android:layout_height="@dimen/one_third_space_invasion_missle_height"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/missile"
+            app:layout_constraintBottom_toBottomOf="@+id/imgTruck"
+            app:layout_constraintStart_toStartOf="@+id/imgTruck" />
+
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>

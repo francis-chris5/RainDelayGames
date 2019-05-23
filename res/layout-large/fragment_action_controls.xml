@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".ControlFragments.ActionControlsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/btnRed"
+            android:layout_width="@dimen/two_thirds_button"
+            android:layout_height="@dimen/two_thirds_button"
+            android:scaleType="fitXY"
+            android:src="@drawable/red_tablet"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnBlue"
+            android:layout_width="@dimen/two_thirds_button"
+            android:layout_height="@dimen/two_thirds_button"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/blue_tablet"
+            app:layout_constraintStart_toEndOf="@+id/btnRed"
+            app:layout_constraintTop_toTopOf="@+id/btnRed" />
+
+        <ImageButton
+            android:id="@+id/btnPurple"
+            android:layout_width="@dimen/two_thirds_button"
+            android:layout_height="@dimen/two_thirds_button"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/purple_tablet"
+            app:layout_constraintStart_toStartOf="@+id/btnRed"
+            app:layout_constraintTop_toBottomOf="@+id/btnRed" />
+
+        <ImageButton
+            android:id="@+id/btnYellow"
+            android:layout_width="@dimen/two_thirds_button"
+            android:layout_height="@dimen/two_thirds_button"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/yellow_tablet"
+            app:layout_constraintStart_toEndOf="@+id/btnPurple"
+            app:layout_constraintTop_toTopOf="@+id/btnPurple" />
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>
