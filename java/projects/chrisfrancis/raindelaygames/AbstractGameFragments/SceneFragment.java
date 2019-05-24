@@ -136,11 +136,19 @@ public abstract class SceneFragment extends Fragment {
 
     public abstract void moveUp();
 
+    public abstract void releaseUp();
+
     public abstract void moveDown();
+
+    public abstract  void  releaseDown();
 
     public abstract void moveLeft();
 
+    public abstract void releaseLeft();
+
     public abstract void moveRight();
+
+    public abstract void releaseRight();
 
     public abstract void clickRed();
 

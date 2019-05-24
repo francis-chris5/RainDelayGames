@@ -44,10 +44,14 @@ public class DirectionControlsFragment extends Fragment {
 
     public interface DirectionInterface{
         void moveUp();
+        void releaseUp();
         void moveDown();
+        void releaseDown();
         void moveLeft();
+        void releaseLeft();
         void moveRight();
-    }
+        void releaseRight();
+    }//end DirectionInterface
 
     public DirectionControlsFragment() {
     }//end empty constructor()
@@ -89,6 +93,7 @@ public class DirectionControlsFragment extends Fragment {
                         }
                         upHandle.removeCallbacks(goUp);
                         upHandle = null;
+                        directionInterface.releaseUp();
                         break;
                 }
                 return false;
@@ -123,6 +128,7 @@ public class DirectionControlsFragment extends Fragment {
                         }
                         downHandle.removeCallbacks(goDown);
                         downHandle = null;
+                        directionInterface.releaseDown();
                         break;
                 }
                 return false;
@@ -157,6 +163,7 @@ public class DirectionControlsFragment extends Fragment {
                         }
                         leftHandle.removeCallbacks(goLeft);
                         leftHandle = null;
+                        directionInterface.releaseLeft();
                         break;
                 }
                 return false;
@@ -191,6 +198,7 @@ public class DirectionControlsFragment extends Fragment {
                         }
                         rightHandle.removeCallbacks(goRight);
                         rightHandle = null;
+                        directionInterface.releaseRight();
                         break;
                 }
                 return false;

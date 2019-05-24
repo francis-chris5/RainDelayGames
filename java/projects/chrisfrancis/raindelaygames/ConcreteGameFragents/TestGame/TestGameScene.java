@@ -83,6 +83,26 @@ public class TestGameScene extends SceneFragment {
     }
 
     @Override
+    public void releaseUp() {
+
+    }
+
+    @Override
+    public void releaseDown() {
+
+    }
+
+    @Override
+    public void releaseLeft() {
+
+    }
+
+    @Override
+    public void releaseRight() {
+
+    }
+
+    @Override
     public void clickRed() {
         stuff[0] = "click red button";
         stuff[1] = counter - Math.random() * 3;

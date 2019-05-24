@@ -231,6 +231,19 @@ public class SpaceInvasionScene extends SceneFragment {
 
 
     @Override
+    public void releaseUp() { }
+    @Override
+    public void releaseDown() { }
+    @Override
+    public void releaseLeft() { }
+    @Override
+    public void releaseRight() { }
+
+
+
+
+
+    @Override
     public void clickRed() {
         fire();
     }//end clickRed()

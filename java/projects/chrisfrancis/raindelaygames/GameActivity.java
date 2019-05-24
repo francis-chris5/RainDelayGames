@@ -189,11 +189,24 @@ public class GameActivity extends AppCompatActivity implements DirectionControls
         sceneFragment.moveUp();
     }//end moveUp()
 
+
+    @Override
+    public void releaseUp() {
+        SceneFragment sceneFragment = (SceneFragment)getSupportFragmentManager().findFragmentById(R.id.frgScene);
+        sceneFragment.releaseUp();
+    }//end releaseUp()
+
     @Override
     public void moveDown() {
         SceneFragment sceneFragment = (SceneFragment)getSupportFragmentManager().findFragmentById(R.id.frgScene);
         sceneFragment.moveDown();
     }//end moveDown()
+
+    @Override
+    public void releaseDown() {
+        SceneFragment sceneFragment = (SceneFragment)getSupportFragmentManager().findFragmentById(R.id.frgScene);
+        sceneFragment.releaseDown();
+    }//end releaseDown()
 
     @Override
     public void moveLeft() {
@@ -202,10 +215,22 @@ public class GameActivity extends AppCompatActivity implements DirectionControls
     }//end moveLeft()
 
     @Override
+    public void releaseLeft() {
+        SceneFragment sceneFragment = (SceneFragment)getSupportFragmentManager().findFragmentById(R.id.frgScene);
+        sceneFragment.releaseLeft();
+    }//end releaseLeft()
+
+    @Override
     public void moveRight() {
         SceneFragment sceneFragment = (SceneFragment)getSupportFragmentManager().findFragmentById(R.id.frgScene);
         sceneFragment.moveRight();
     }//end moveRight()
+
+    @Override
+    public void releaseRight() {
+        SceneFragment sceneFragment = (SceneFragment)getSupportFragmentManager().findFragmentById(R.id.frgScene);
+        sceneFragment.releaseRight();
+    }//end releaseRight()
 
     @Override
     public void passHUDData(Object... objects) {

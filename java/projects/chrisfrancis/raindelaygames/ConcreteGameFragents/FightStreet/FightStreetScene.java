@@ -3,6 +3,7 @@ package projects.chrisfrancis.raindelaygames.ConcreteGameFragents.FightStreet;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -41,6 +42,8 @@ public class FightStreetScene extends SceneFragment {
     private boolean heroAttack = false;
     private double heroDamage = 0.0;
     private boolean heroKnockOut = false;
+    private AnimationDrawable heroWalk;
+    private boolean heroMoving = false;
     private SharedPreferences heroValues;
 
     private ImageView imgBadGuy;
@@ -53,6 +56,8 @@ public class FightStreetScene extends SceneFragment {
     private boolean assault = false;
     private double badGuyDamage = 0.0;
     private boolean badKnockOut = false;
+    private AnimationDrawable badGuyWalk;
+    private boolean badGuyMoving = true;
     private SharedPreferences badGuyValues;
 
 
@@ -156,6 +161,10 @@ public class FightStreetScene extends SceneFragment {
         sceneWidth = imgScene.getLayoutParams().width;
         sceneHeight = imgScene.getLayoutParams().height;
         meters =imgHero.getLayoutParams().height / 1.8288; //6ft man, checking this for physics engine in future games
+        imgHero.setBackgroundResource(R.drawable.empty_animation);
+        heroWalk = (AnimationDrawable)imgHero.getBackground();
+        imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
+        badGuyWalk = (AnimationDrawable)imgBadGuy.getBackground();
         hud_data[0] = win;
         hud_data[1] = loss;
         return hud_data;
@@ -193,6 +202,9 @@ public class FightStreetScene extends SceneFragment {
             imgHero.setTranslationY(imgHero.getTranslationY() - 5);
             heroY -= 5;
         }
+        if(!heroKnockOut) {
+            heroMoving = true;
+        }
         drawHero();
     }//end moveUp()
 
@@ -201,6 +213,9 @@ public class FightStreetScene extends SceneFragment {
         if(imgHero.getY() < 0.70 * sceneHeight && !heroKnockOut){
             imgHero.setTranslationY(imgHero.getTranslationY() + 5);
             heroY += 5;
+        }
+        if(!heroKnockOut) {
+            heroMoving = true;
         }
         drawHero();
     }//end moveDown()
@@ -212,6 +227,9 @@ public class FightStreetScene extends SceneFragment {
             heroX -= 5;
             heroLeft = true;
         }
+        if(!heroKnockOut) {
+            heroMoving = true;
+        }
         drawHero();
     }//end moveLeft()
 
@@ -222,8 +240,31 @@ public class FightStreetScene extends SceneFragment {
             heroX += 5;
             heroLeft = false;
         }
+        if(!heroKnockOut) {
+            heroMoving = true;
+        }
         drawHero();
     }//end moveRight()
+
+    @Override
+    public void releaseUp() {
+        heroMoving = false;
+    }
+
+    @Override
+    public void releaseDown() {
+        heroMoving = false;
+    }
+
+    @Override
+    public void releaseLeft() {
+        heroMoving = false;
+    }
+
+    @Override
+    public void releaseRight() {
+        heroMoving = false;
+    }
 
     @Override
     public void clickRed() { }
@@ -233,6 +274,8 @@ public class FightStreetScene extends SceneFragment {
 
     @Override
     public void clickBlue() {
+        heroWalk.stop();
+        heroMoving = false;
         if(!heroKnockOut) {
             punch();
         }
@@ -268,27 +311,70 @@ public class FightStreetScene extends SceneFragment {
         if(!heroAttack) {
             if(heroKnockOut){
                 if(!heroLeft){
+                    heroMoving = false;
+                    if(heroWalk.isRunning()) {
+                        heroWalk.stop();
+                    }
+                    imgHero.setBackgroundResource(R.drawable.empty_animation);
                     imgHero.setImageResource(R.drawable.herodownright);
                 }
                 else{
+                    heroMoving = false;
+                    if(heroWalk.isRunning()) {
+                        heroWalk.stop();
+                    }
+                    imgHero.setBackgroundResource(R.drawable.empty_animation);
                     imgHero.setImageResource(R.drawable.herodownleft);
                 }
             }
             else if(!heroLeft) {
-                imgHero.setImageResource(R.drawable.heroright);
+                if(!heroMoving){
+                    if(heroWalk.isRunning()) {
+                        heroWalk.stop();
+                    }
+                    imgHero.setBackgroundResource(R.drawable.empty_animation);
+                    imgHero.setImageResource(R.drawable.heroright);
+                }
+                else {
+                    imgHero.setImageResource(R.drawable.empty);
+                    imgHero.setBackgroundResource(R.drawable.fight_street_hero_walk_right);
+                    heroWalk = (AnimationDrawable) imgHero.getBackground();
+                    heroWalk.start();
+                }
             }
             else {
-                imgHero.setImageResource(R.drawable.heroleft);
+                if(!heroMoving){
+                    if(heroWalk.isRunning()) {
+                        heroWalk.stop();
+                    }
+                    imgHero.setBackgroundResource(R.drawable.empty_animation);
+                    imgHero.setImageResource(R.drawable.heroleft);
+                }
+                else {
+                    imgHero.setImageResource(R.drawable.empty);
+                    imgHero.setBackgroundResource(R.drawable.fight_street_hero_walk_left);
+                    heroWalk = (AnimationDrawable) imgHero.getBackground();
+                    heroWalk.start();
+                }
             }
         }
     }//end drawHero()
 
     public void punch(){
         heroAttack = true;
+        heroMoving = false;
         if(!heroLeft) {
+            if(heroWalk.isRunning()) {
+                heroWalk.stop();
+            }
+            imgHero.setBackgroundResource(R.drawable.empty_animation);
             imgHero.setImageResource(R.drawable.herohitright);
         }
         else{
+            if(heroWalk.isRunning()) {
+                heroWalk.stop();
+            }
+            imgHero.setBackgroundResource(R.drawable.empty_animation);
             imgHero.setImageResource(R.drawable.herohitleft);
         }
 
@@ -328,6 +414,11 @@ public class FightStreetScene extends SceneFragment {
             }
             if(punchX > badLeftSide && punchX < badRightSide && punchY > badTop && punchY < badBottom){
                 badKnockOut = true;
+                badGuyMoving = false;
+                if(badGuyWalk.isRunning()) {
+                    badGuyWalk.stop();
+                }
+                imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
                 imgBadGuy.setImageResource(R.drawable.badguyleftdown);
                 badGuyDamage += 0.34;
                 imgBadGuy.setTranslationX(imgBadGuy.getTranslationX() + (float)(0.2 * sceneWidth));
@@ -358,6 +449,11 @@ public class FightStreetScene extends SceneFragment {
             }
             if(punchX > badLeftSide && punchX < badRightSide && punchY > badTop && punchY < badBottom){
                 badKnockOut = true;
+                badGuyMoving = false;
+                if(badGuyWalk.isRunning()) {
+                    badGuyWalk.stop();
+                }
+                imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
                 imgBadGuy.setImageResource(R.drawable.badguyrightdown);
                 badGuyDamage += 0.34;
                 imgBadGuy.setTranslationX(imgBadGuy.getTranslationX() - (float)(0.2 * sceneWidth));
@@ -406,13 +502,28 @@ public class FightStreetScene extends SceneFragment {
     public void drawBadGuy(){
         if(badKnockOut){
             if(!badLeft){
+                badGuyMoving = false;
+                if(badGuyWalk.isRunning()) {
+                    badGuyWalk.stop();
+                }
+                imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
                 imgBadGuy.setImageResource(R.drawable.badguyrightdown);
             }
             else{
-                imgBadGuy.setImageResource(R.drawable.badguyleftdown);
+                badGuyMoving = false;
+                if(badGuyWalk.isRunning()) {
+                    badGuyWalk.stop();
+                }
+                imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
+                imgBadGuy.setImageResource(R.drawable.badguyrightdown);
             }
         }
         else if(assault){
+            if(badGuyWalk.isRunning()) {
+                badGuyWalk.stop();
+            }
+            imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
+            badGuyMoving = false;
             if(!badLeft){
                 imgBadGuy.setImageResource(R.drawable.badguyhitright);
             }
@@ -423,14 +534,42 @@ public class FightStreetScene extends SceneFragment {
         else if(conflict){
             if(imgBadGuy.getX() > imgHero.getX()) {
                 badLeft = true;
-                imgBadGuy.setImageResource(R.drawable.badguyleft);
+                if(!badGuyMoving){
+                    if(badGuyWalk.isRunning()) {
+                        badGuyWalk.stop();
+                    }
+                    imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
+                    imgBadGuy.setImageResource(R.drawable.badguyleft);
+                }
+                else {
+                    imgBadGuy.setImageResource(R.drawable.empty);
+                    imgBadGuy.setBackgroundResource(R.drawable.fight_street_bad_guy_walk_left);
+                    badGuyWalk = (AnimationDrawable) imgBadGuy.getBackground();
+                    badGuyWalk.start();
+                }
             }
             else{
                 badLeft = false;
-                imgBadGuy.setImageResource(R.drawable.badguyright);
+                if(!badGuyMoving){
+                    if(badGuyWalk.isRunning()) {
+                        badGuyWalk.stop();
+                    }
+                    imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
+                    imgBadGuy.setImageResource(R.drawable.badguyright);
+                }
+                else {
+                    imgBadGuy.setImageResource(R.drawable.empty);
+                    imgBadGuy.setBackgroundResource(R.drawable.fight_street_bad_guy_walk_right);
+                    badGuyWalk = (AnimationDrawable) imgBadGuy.getBackground();
+                    badGuyWalk.start();
+                }
             }
         }
         else{
+            if(badGuyWalk.isRunning()) {
+                badGuyWalk.stop();
+            }
+            imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
             imgBadGuy.setImageResource(R.drawable.empty);
         }
     }//end drawBadGuy()
@@ -470,12 +609,16 @@ public class FightStreetScene extends SceneFragment {
             }
             if(!badKnockOut) {
                 if (direction == 0) {
+                    badGuyMoving = true;
                     badMoveDown();
                 } else if (direction == 1) {
+                    badGuyMoving = true;
                     badMoveLeft();
                 } else if (direction == 2) {
+                    badGuyMoving = true;
                     badMoveUp();
                 } else {
+                    badGuyMoving = true;
                     badMoveRight();
                 }
             }
@@ -548,7 +691,15 @@ public class FightStreetScene extends SceneFragment {
                 if (fistX > playerLeft && fistX < playerRight && fistY > playerTop && fistY < playerBottom) {
                     assault = true;
                     heroKnockOut = true;
+                    if(badGuyWalk.isRunning()) {
+                        badGuyWalk.stop();
+                    }
+                    imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
                     imgBadGuy.setImageResource(R.drawable.badguyhitright);
+                    if(heroWalk.isRunning()) {
+                        heroWalk.stop();
+                    }
+                    imgHero.setBackgroundResource(R.drawable.empty_animation);
                     imgHero.setImageResource(R.drawable.herodownleft);
                     heroDamage += 0.34;
                     imgHero.setTranslationX(imgHero.getTranslationX() + (float)(0.2 * sceneWidth));
@@ -582,7 +733,15 @@ public class FightStreetScene extends SceneFragment {
                 if (fistX > playerLeft && fistX < playerRight && fistY > playerTop && fistY < playerBottom) {
                     assault = true;
                     heroKnockOut = true;
+                    if(badGuyWalk.isRunning()) {
+                        badGuyWalk.stop();
+                    }
+                    imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
                     imgBadGuy.setImageResource(R.drawable.badguyhitleft);
+                    if(heroWalk.isRunning()) {
+                        heroWalk.stop();
+                    }
+                    imgHero.setBackgroundResource(R.drawable.empty_animation);
                     imgHero.setImageResource(R.drawable.herodownright);
                     heroDamage += 0.34;
                     imgHero.setTranslationX(imgHero.getTranslationX() - (float)(0.2 * sceneWidth));
@@ -652,6 +811,10 @@ public class FightStreetScene extends SceneFragment {
             sceneToHUDInterface.passHUDData(hud_data);
             heroDamage = 0.0;
             badGuyDamage = 0.0;
+            if(badGuyWalk.isRunning()) {
+                badGuyWalk.stop();
+            }
+            imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
             imgBadGuy.setImageResource(R.drawable.empty);
             badX = 0;
             badY = 0;
@@ -663,6 +826,10 @@ public class FightStreetScene extends SceneFragment {
         }
         else{
             badKnockOut = false;
+            if(badGuyWalk.isRunning()) {
+                badGuyWalk.stop();
+            }
+            imgBadGuy.setBackgroundResource(R.drawable.empty_animation);
             imgBadGuy.setImageResource(R.drawable.badguyright);
         }
     }//end badGuyWounds()
