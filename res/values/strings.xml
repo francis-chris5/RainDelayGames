@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">RainDelayGames</string>
+    <string name="empty"></string>
+
+    <!-- MENU BUTTON STRINGS -->
+    <string name="btnNew">New</string>
+    <string name="btnHelp">Help</string>
+    <string name="btnExit">Exit</string>
+
+
+    <!-- HIGH SCORE INPUT STRINGS -->
+    <string name="txtName">Name</string>
+    <string name="lblName">That\'s a new high score for this game. Please enter your name.</string>
+    <string name="btnDone">Done</string>
+    <string name="btnViewHighScores">View High Score List</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fight_street_txtWins">Wins: 0</string>
+    <string name="fight_street_txtLosses">Losses: 0</string>
+</resources>

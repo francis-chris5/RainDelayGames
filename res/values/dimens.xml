@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <!-- different screen size dimensions -->
+    <dimen name="full_width">650dp</dimen>
+    <dimen name="full_height">450dp</dimen>
+    <dimen name="full_button">75dp</dimen>
+    <dimen name="full_direction_controls">225dp</dimen>
+    <dimen name="full_action_controls">245dp</dimen>
+    <dimen name="full_fight_street_character_width">100dp</dimen>
+    <dimen name="full_fight_street_character_height">150dp</dimen>
+    <dimen name="full_space_invasion_alien_width">133dp</dimen>
+    <dimen name="full_space_invasion_alien_height">55dp</dimen>
+    <dimen name="full_space_invasion_missle_width">50dp</dimen>
+    <dimen name="full_space_invasion_missle_height">75dp</dimen>
+    <dimen name="full_space_invasion_truck_width">200dp</dimen>
+    <dimen name="full_space_invasion_truck_height">100dp</dimen>
+
+    <dimen name="two_thirds_width">433dp</dimen>
+    <dimen name="two_thirds_height">300dp</dimen>
+    <dimen name="two_thirds_button">68dp</dimen>
+    <dimen name="two_thirds_direction_controls">204dp</dimen>
+    <dimen name="two_thirds_action_controls">156dp</dimen>
+    <dimen name="two_thirds_text_size">32dp</dimen>
+    <dimen name="two_thirds_logo_height">145dp</dimen>
+    <dimen name="two_thirds_logo_width">220dp</dimen>
+    <dimen name="two_thirds_fight_street_character_width">67dp</dimen>
+    <dimen name="two_thirds_fight_street_character_height">100dp</dimen>
+    <dimen name="two_thirds_space_invasion_alien_width">89dp</dimen>
+    <dimen name="two_thirds_space_invasion_alien_height">37dp</dimen>
+    <dimen name="two_thirds_space_invasion_missle_width">33dp</dimen>
+    <dimen name="two_thirds_space_invasion_missle_height">50dp</dimen>
+    <dimen name="two_thirds_space_invasion_truck_width">133dp</dimen>
+    <dimen name="two_thirds_space_invasion_truck_height">67dp</dimen>
+
+    <dimen name="one_third_width">216dp</dimen>
+    <dimen name="one_third_height">150dp</dimen>
+    <dimen name="one_third_button">60dp</dimen>
+    <dimen name="one_third_direction_controls">180dp</dimen>
+    <dimen name="one_third_action_controls">132dp</dimen>
+    <dimen name="one_third_text_size">18dp</dimen>
+    <dimen name="one_third_logo_height">110dp</dimen>
+    <dimen name="one_third_logo_width">169dp</dimen>
+    <dimen name="one_third_fight_street_character_width">33dp</dimen>
+    <dimen name="one_third_fight_street_character_height">50dp</dimen>
+    <dimen name="one_third_space_invasion_alien_width">44dp</dimen>
+    <dimen name="one_third_space_invasion_alien_height">18dp</dimen>
+    <dimen name="one_third_space_invasion_missle_width">17dp</dimen>
+    <dimen name="one_third_space_invasion_missle_height">25dp</dimen>
+    <dimen name="one_third_space_invasion_truck_width">67dp</dimen>
+    <dimen name="one_third_space_invasion_truck_height">33dp</dimen>
+
+
+        <!-- text on high score list sizes -->
+    <dimen name="high_score_text_name">24dp</dimen>
+    <dimen name="high_score_text_score">24dp</dimen>
+    <dimen name="high_score_text_game">18dp</dimen>
+    <dimen name="full_text_size">42dp</dimen>
+
+
+
+</resources>
